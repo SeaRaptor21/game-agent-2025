@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://mfp8pxjk1ys8"]
+
+[ext_resource type="Theme" uid="uid://d381qs8lp8cvd" path="res://resources/theme.tres" id="1_0k1j4"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_nt7q6"]
+
+[sub_resource type="SystemFont" id="SystemFont_37kjb"]
+font_names = PackedStringArray("MathJax_Vector-Bold")
+
+[sub_resource type="SystemFont" id="SystemFont_o8mrb"]
+font_names = PackedStringArray("MathJax_Vector-Bold")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0k1j4")
+script = ExtResource("1_nt7q6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("SystemFont_37kjb")
+text = "Player 1"
+
+[node name="P1Health" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+value = 50.0
+show_percentage = false
+
+[node name="P2Health" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = SubResource("SystemFont_o8mrb")
+text = "Player 2"

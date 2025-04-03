@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://s8q53qmfr4gv"]
+
+[ext_resource type="Theme" uid="uid://d381qs8lp8cvd" path="res://resources/theme.tres" id="1_vgy60"]
+[ext_resource type="Script" path="res://scripts/title.gd" id="2_ddlgr"]
+
+[sub_resource type="SystemFont" id="SystemFont_jqi6o"]
+font_names = PackedStringArray("MathJax_Vector-Bold")
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vgy60")
+script = ExtResource("2_ddlgr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266575, 0.266575, 0.266575, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_fonts/bold_font = SubResource("SystemFont_jqi6o")
+bbcode_enabled = true
+text = "[center]
+[font_size=64][b]Game Agent 2025[/b]
+[/font_size][font_size=32][color=#aaa]
+Northshore Middle School Blue B-14
+Eric Schuette & Anthony Hsu
+[/color]
+[/font_size]
+[/center]"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="PlayHuman" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Against Human"
+
+[node name="TrainAgent" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Train the Agent"
+
+[node name="PlayFunction" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Against Function"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/PlayHuman" to="." method="_on_play_human_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/TrainAgent" to="." method="_on_train_agent_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/PlayFunction" to="." method="_on_play_function_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

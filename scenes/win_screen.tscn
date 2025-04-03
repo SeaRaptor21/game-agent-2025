@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://uugexry4jeov"]
+
+[ext_resource type="Theme" uid="uid://d381qs8lp8cvd" path="res://resources/theme.tres" id="1_flcns"]
+[ext_resource type="Script" path="res://scripts/win_screen.gd" id="2_pfj55"]
+
+[sub_resource type="SystemFont" id="SystemFont_753sx"]
+font_names = PackedStringArray("MathJax_Vector-Bold")
+
+[sub_resource type="LabelSettings" id="LabelSettings_gajfe"]
+font = SubResource("SystemFont_753sx")
+font_size = 64
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_flcns")
+script = ExtResource("2_pfj55")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Player 1 Wins!"
+label_settings = SubResource("LabelSettings_gajfe")
+
+[node name="Back" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to title"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

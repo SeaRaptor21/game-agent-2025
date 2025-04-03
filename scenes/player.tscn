@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c40d2e7rqalpy"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8vuu"]
+radius = 32.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_3vyb7"]
+radius = 32.0
+height = 64.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_3vyb7"]
+size = Vector2(48, 12)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_3vyb7")
+
+[node name="Bullets" type="Node2D" parent="."]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u8vuu")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.474126, 0.474126, 0.474126, 1)
+mesh = SubResource("SphereMesh_3vyb7")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
+modulate = Color(0.215708, 0.215708, 0.215708, 1)
+position = Vector2(16, 0)
+mesh = SubResource("QuadMesh_3vyb7")
