@@ -5,6 +5,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_753sx"]
 font_names = PackedStringArray("MathJax_Vector-Bold")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_gajfe"]
 font = SubResource("SystemFont_753sx")
