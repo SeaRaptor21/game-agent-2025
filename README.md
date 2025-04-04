@@ -1,2 +1,4 @@
-# game-agent-2025
-Game Agent 2025
+# Game Agent
+**NMS Blue B-3 2025**
+
+Might make some docs at some point...
