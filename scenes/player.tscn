@@ -1,61 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgblt6xowrni2"]
+[gd_scene load_steps=8 format=3 uid="uid://cgblt6xowrni2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h0v4m"]
 [ext_resource type="Texture2D" uid="uid://b0pa7nna5wass" path="res://assets/tileset.png" id="2_ul3pb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8l06s"]
-size = Vector2(14, 16)
+size = Vector2(14, 2)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3lhf6"]
-atlas = ExtResource("2_ul3pb")
-region = Rect2(0, 32, 16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idqat"]
+size = Vector2(16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tor7l"]
-atlas = ExtResource("2_ul3pb")
-region = Rect2(16, 32, 16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vatpf"]
+size = Vector2(14, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ev56"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cv3d"]
 atlas = ExtResource("2_ul3pb")
-region = Rect2(32, 32, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2a324"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3lhf6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tor7l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ev56")
+"texture": SubResource("AtlasTexture_3cv3d")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_idqat"]
-size = Vector2(16, 16)
-
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 script = ExtResource("1_h0v4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_8l06s")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-
-[node name="MoveTimer" type="Timer" parent="."]
-autostart = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2a324")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.468212
 
 [node name="DeathTrigger" type="Area2D" parent="."]
 collision_layer = 2
@@ -64,5 +42,23 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathTrigger"]
 shape = SubResource("RectangleShape2D_idqat")
 
+[node name="WindChecker" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindChecker"]
+shape = SubResource("RectangleShape2D_vatpf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2a324")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.839884
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
-[connection signal="body_entered" from="DeathTrigger" to="." method="_on_death_trigger_body_entered"]

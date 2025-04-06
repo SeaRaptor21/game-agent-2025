@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cus0tapkxxxgc"]
+
+[ext_resource type="Script" path="res://scripts/wind.gd" id="1_c8wsl"]
+[ext_resource type="Texture2D" uid="uid://b0pa7nna5wass" path="res://assets/tileset.png" id="1_iexot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_www8p"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbebb"]
+atlas = ExtResource("1_iexot")
+region = Rect2(64, 16, 16, 16)
+
+[node name="Wind" type="Area2D"]
+modulate = Color(1, 1, 1, 0.392157)
+z_index = -1
+collision_layer = 4
+script = ExtResource("1_c8wsl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_www8p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gbebb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
