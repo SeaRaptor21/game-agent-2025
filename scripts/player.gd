@@ -19,11 +19,11 @@ func _on_move_timer_timeout() -> void:
 	if not is_on_floor():
 		velocity.y = fall_speed*TILE_SIZE
 	var direction := Input.get_axis("left", "right")
+	if direction:
+		$AnimatedSprite2D.flip_h = direction>0
 	var winds = $WindChecker.get_overlapping_areas()
 	if not winds.is_empty():
 		direction = winds[0].direction
-	if direction:
-		$AnimatedSprite2D.flip_h = direction == 1
 	velocity.x = direction*speed*TILE_SIZE
 
 func die():

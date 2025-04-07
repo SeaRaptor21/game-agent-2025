@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgblt6xowrni2"]
+[gd_scene load_steps=11 format=3 uid="uid://cgblt6xowrni2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_h0v4m"]
 [ext_resource type="Texture2D" uid="uid://b0pa7nna5wass" path="res://assets/tileset.png" id="2_ul3pb"]
@@ -16,19 +16,41 @@ size = Vector2(14, 14)
 atlas = ExtResource("2_ul3pb")
 region = Rect2(0, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5kaj"]
+atlas = ExtResource("2_ul3pb")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xqhi"]
+atlas = ExtResource("2_ul3pb")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3n41"]
+atlas = ExtResource("2_ul3pb")
+region = Rect2(16, 64, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_2a324"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3cv3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5kaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xqhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3n41")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
+collision_layer = 2
 script = ExtResource("1_h0v4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -52,10 +74,10 @@ shape = SubResource("RectangleShape2D_vatpf")
 sprite_frames = SubResource("SpriteFrames_2a324")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.839884
+frame_progress = 0.271019
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="MoveTimer" type="Timer" parent="."]
