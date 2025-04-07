@@ -5,6 +5,10 @@
 [node name="Fan" type="Node2D"]
 script = ExtResource("1_g8jp0")
 
+[node name="DistanceFinder" type="RayCast2D" parent="."]
+position = Vector2(16, 0)
+target_position = Vector2(1600, 0)
+
 [node name="Wind" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]

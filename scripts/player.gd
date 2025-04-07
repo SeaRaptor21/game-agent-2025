@@ -18,7 +18,7 @@ func _on_move_timer_timeout() -> void:
 		die()
 	if not is_on_floor():
 		velocity.y = fall_speed*TILE_SIZE
-	var direction := Input.get_axis("left", "right")
+	var direction := get_direction()
 	if direction:
 		$AnimatedSprite2D.flip_h = direction>0
 	var winds = $WindChecker.get_overlapping_areas()
@@ -26,8 +26,11 @@ func _on_move_timer_timeout() -> void:
 		direction = winds[0].direction
 	velocity.x = direction*speed*TILE_SIZE
 
-func die():
-	pass
+func get_direction() -> float:
+	return Input.get_axis("left", "right")
 
-func win():
+func die() -> void:
+	queue_free()
+
+func win() -> void:
 	pass

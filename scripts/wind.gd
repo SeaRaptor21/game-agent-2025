@@ -5,7 +5,7 @@ const SPEED = 64.0
 var colliding = false
 
 func _physics_process(delta: float) -> void:
-	position.x += SPEED*direction*delta
+	position.x += SPEED*delta
 
 func _on_body_entered(_body: Node2D) -> void:
 	colliding = true

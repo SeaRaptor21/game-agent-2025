@@ -50,7 +50,7 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_h0v4m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,7 +74,7 @@ shape = SubResource("RectangleShape2D_vatpf")
 sprite_frames = SubResource("SpriteFrames_2a324")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.271019
+frame_progress = 0.452739
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
