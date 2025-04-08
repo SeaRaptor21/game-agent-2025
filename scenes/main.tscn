@@ -96,7 +96,6 @@ grow_vertical = 2
 theme = ExtResource("4_16c2l")
 
 [node name="WinScreen" type="CenterContainer" parent="CanvasLayer2/EndScreens"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,7 +117,7 @@ label_settings = SubResource("LabelSettings_tsexa")
 
 [node name="Return" type="Button" parent="CanvasLayer2/EndScreens/WinScreen/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Return to title"
+text = "Return to Title"
 
 [node name="LoseScreen" type="CenterContainer" parent="CanvasLayer2/EndScreens"]
 visible = false

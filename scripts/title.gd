@@ -18,6 +18,16 @@ func _on_agent_pressed() -> void:
 		CONNECT_ONE_SHOT
 	)
 
+func _on_help_pressed() -> void:
+	$Help.visible = true
+
+func _on_docs_pressed() -> void:
+	$Docs.visible = true
+
+func _on_return_pressed() -> void:
+	$Help.visible = false
+	$Docs.visible = false
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
