@@ -1,0 +1,160 @@
+[gd_scene load_steps=11 format=4 uid="uid://cy5ljx6uvxmuc"]
+
+[ext_resource type="Theme" uid="uid://o652as3bmwqj" path="res://resources/theme.tres" id="1_fp2ie"]
+[ext_resource type="Script" path="res://scripts/title.gd" id="2_claiw"]
+[ext_resource type="Texture2D" uid="uid://b0pa7nna5wass" path="res://assets/tileset.png" id="3_hkw5p"]
+[ext_resource type="TileSet" uid="uid://bladtfdc3dwbm" path="res://resources/tileset.tres" id="4_oq8kl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tcf2h"]
+font_size = 100
+font_color = Color(0.560784, 0.337255, 0.231373, 1)
+outline_size = 64
+outline_color = Color(0.34902, 0.196078, 0.168627, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txux5"]
+atlas = ExtResource("3_hkw5p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_8m111"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeToBlackRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3d1n0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeToBlackRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wc43j"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeToBlackRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgytp"]
+_data = {
+"RESET": SubResource("Animation_3d1n0"),
+"fade_in": SubResource("Animation_wc43j"),
+"fade_out": SubResource("Animation_8m111")
+}
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_fp2ie")
+script = ExtResource("2_claiw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.392157, 0.537255, 0.619608, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 307.0
+offset_top = 142.0
+offset_right = 439.0
+offset_bottom = 237.0
+color = Color(0.34902, 0.196078, 0.168627, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "D   wnburst"
+label_settings = SubResource("LabelSettings_tcf2h")
+uppercase = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/VBoxContainer"]
+position = Vector2(94, 56)
+rotation = 4.71239
+scale = Vector2(4.5, 4.5)
+texture = SubResource("AtlasTexture_txux5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Human" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play as human"
+
+[node name="Agent" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Train/run agent"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAABAA0AAAADAAMAAAABAAwAAAACAAIAAAABAAsAAAACAAIAAAABAAoAAAACAAIAAAABAAkAAAACAAIAAAABAAgAAAACAAIAAAABAAcAAAACAAIAAAABAAYAAAACAAIAAAABAAUAAAACAAIAAAABAAQAAAACAAIAAAABAAMAAAACAAIAAAABAAIAAAACAAIAAAABAAEAAAACAAIAAAABAAAAAAADAAEAAAAAAA0AAAABAAMAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAACAAIAAAAAAAUAAAACAAIAAAAAAAQAAAACAAIAAAAAAAMAAAACAAIAAAAAAAIAAAACAAIAAAAAAAEAAAACAAIAAAAAAAAAAAACAAIAAAAXAA0AAAACAAIAAAAXAAwAAAACAAIAAAAXAAsAAAACAAIAAAAXAAoAAAACAAIAAAAXAAkAAAACAAIAAAAXAAgAAAACAAIAAAAXAAcAAAACAAIAAAAXAAYAAAACAAIAAAAXAAUAAAACAAIAAAAXAAQAAAACAAIAAAAXAAMAAAACAAIAAAAXAAIAAAACAAIAAAAXAAEAAAACAAIAAAAXAAAAAAACAAIAAAAWAA0AAAACAAIAAAAWAAwAAAACAAIAAAAWAAsAAAACAAIAAAAWAAoAAAACAAIAAAAWAAkAAAACAAIAAAAWAAgAAAACAAIAAAAWAAcAAAACAAIAAAAWAAYAAAACAAIAAAAWAAUAAAACAAIAAAAWAAQAAAACAAIAAAAWAAMAAAACAAIAAAAWAAIAAAACAAIAAAAWAAEAAAACAAIAAAAWAAAAAAACAAIAAAACAA4AAAADAAIAAAACAA0AAAABAAMAAAACAAwAAAACAAIAAAACAAsAAAADAAAAAAACAAoAAAADAAAAAAACAAkAAAACAAIAAAACAAgAAAACAAIAAAACAAcAAAACAAIAAAACAAYAAAACAAIAAAACAAUAAAADAAAAAAACAAQAAAACAAIAAAACAAMAAAACAAIAAAACAAIAAAADAAAAAAACAAEAAAACAAIAAAACAAAAAAABAAEAAAACAP//AAADAAIAAAABAP//AAACAAIAAAAAAP//AAABAAEAAAABAA4AAAACAAIAAAAAAA4AAAABAAIAAAD//w4AAAABAAMAAAD//w0AAAACAAIAAAD//wwAAAACAAIAAAD//wsAAAACAAIAAAD//woAAAACAAIAAAD//wkAAAACAAIAAAD//wgAAAACAAIAAAD//wcAAAACAAIAAAD//wYAAAACAAIAAAD//wUAAAACAAIAAAD//wQAAAACAAIAAAD//wMAAAACAAIAAAD//wIAAAACAAIAAAD//wEAAAACAAIAAAD//wAAAAACAAIAAAD/////AAABAAEAAAAYAP//AAADAAEAAAAXAP//AAACAAIAAAAWAP//AAACAAIAAAAYAA0AAAADAAMAAAAYAAwAAAACAAIAAAAYAAsAAAACAAIAAAAYAAoAAAACAAIAAAAYAAkAAAACAAIAAAAYAAgAAAACAAIAAAAYAAcAAAACAAIAAAAYAAYAAAACAAIAAAAYAAUAAAACAAIAAAAYAAQAAAACAAIAAAAYAAMAAAACAAIAAAAYAAIAAAACAAIAAAAYAAEAAAACAAIAAAAYAAAAAAACAAIAAAAVAA0AAAACAAIAAAAVAAwAAAACAAIAAAAVAAsAAAABAAMAAAAVAAoAAAACAAIAAAAVAAkAAAABAAAAAAAVAAgAAAABAAAAAAAVAAcAAAACAAIAAAAVAAYAAAACAAIAAAAVAAUAAAACAAIAAAAVAAQAAAACAAIAAAAVAAMAAAABAAAAAAAVAAIAAAABAAEAAAAVAAEAAAACAAIAAAAVAAAAAAACAAIAAAAVAP//AAABAAEAAAAUAAEAAAACAAIAAAAUAAAAAAACAAIAAAAUAP//AAACAAIAAAATAAEAAAABAAMAAAATAAAAAAACAAIAAAATAP//AAACAAIAAAASAAAAAAACAAIAAAASAP//AAACAAIAAAARAAAAAAABAAMAAAARAP//AAABAAEAAAAEAAEAAAADAAMAAAAEAAAAAAACAAIAAAAEAP//AAADAAEAAAADAAEAAAACAAIAAAADAAAAAAACAAIAAAADAP//AAACAAIAAAAGAAAAAAADAAMAAAAGAP//AAADAAEAAAAFAAAAAAACAAIAAAAFAP//AAACAAIAAAAEAA0AAAADAAMAAAAEAAwAAAADAAEAAAADAA0AAAACAAIAAAADAAwAAAACAAIAAAAGAA0AAAADAAEAAAAFAA0AAAABAAMAAAAUAA0AAAACAAIAAAAUAAwAAAACAAIAAAATAA0AAAACAAIAAAATAAwAAAABAAEAAAASAA0AAAACAAIAAAARAA0AAAABAAEAAAAGAA4AAAADAAMAAAAFAA4AAAACAAIAAAAEAA4AAAACAAIAAAADAA4AAAACAAIAAAAYAA4AAAADAAMAAAAXAA4AAAACAAIAAAAWAA4AAAACAAIAAAAVAA4AAAACAAIAAAAUAA4AAAACAAIAAAATAA4AAAACAAIAAAASAA4AAAACAAIAAAARAA4AAAABAAMAAAADAAkAAAAEAAIAAAADAAcAAAAEAAIAAAADAAMAAAAEAAIAAAAGAAwAAAACAAAAAAAEAAsAAAACAAAAAAAGAAEAAAACAAQAAAASAAEAAAACAAQAAAATAAIAAAACAAQAAAAUAAIAAAACAAQAAAAUAAQAAAAAAAIAAAAUAAcAAAAAAAIAAAAUAAoAAAAAAAIAAAATAAsAAAACAAAAAAASAAwAAAACAAAAAAA=")
+tile_set = ExtResource("4_oq8kl")
+
+[node name="FadeToBlackRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="FadeToBlack" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pgytp")
+}
+speed_scale = 2.0
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/Human" to="." method="_on_human_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/Agent" to="." method="_on_agent_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

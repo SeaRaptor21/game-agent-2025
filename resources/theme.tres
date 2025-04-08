@@ -1,0 +1,50 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://o652as3bmwqj"]
+
+[ext_resource type="FontFile" uid="uid://d3fv8fs8o0t0l" path="res://assets/tiny-5-font/Tiny5-Regular.ttf" id="1_0r7hr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p7f3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nic68"]
+bg_color = Color(0.560784, 0.337255, 0.231373, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.560784, 0.337255, 0.231373, 1)
+shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lt67"]
+bg_color = Color(0.34902, 0.196078, 0.168627, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.34902, 0.196078, 0.168627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qrdc"]
+bg_color = Color(0.65098, 0.4, 0.282353, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.65098, 0.4, 0.282353, 1)
+shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6abh"]
+bg_color = Color(0.419608, 0.243137, 0.160784, 1)
+border_width_left = 128
+border_width_top = 64
+border_width_right = 128
+border_width_bottom = 64
+border_color = Color(0.420633, 0.244717, 0.161121, 1)
+
+[resource]
+default_font = ExtResource("1_0r7hr")
+Button/font_sizes/font_size = 32
+Button/styles/disabled = null
+Button/styles/focus = SubResource("StyleBoxFlat_3p7f3")
+Button/styles/hover = SubResource("StyleBoxFlat_nic68")
+Button/styles/normal = SubResource("StyleBoxFlat_7lt67")
+Button/styles/pressed = SubResource("StyleBoxFlat_3qrdc")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_i6abh")

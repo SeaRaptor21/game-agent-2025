@@ -5,14 +5,20 @@ const SPEED_SCALE = 1.0
 var speed = 10.0
 var fall_speed = 10.0  # Should be integer multiple of speed
 
+var done = false
+
 func _ready() -> void:
 	$MoveTimer.start(1.0/speed)
 
 func _physics_process(_delta: float) -> void:
+	if done:
+		return
 	move_and_slide()
 	#speed = SPEED_SCALE*round(position.y/100)+10
 
 func _on_move_timer_timeout() -> void:
+	if done:
+		return
 	position = round(position/TILE_SIZE)*TILE_SIZE
 	if not $DeathTrigger.get_overlapping_bodies().is_empty():
 		die()
@@ -30,7 +36,9 @@ func get_direction() -> float:
 	return Input.get_axis("left", "right")
 
 func die() -> void:
-	queue_free()
+	$"..".lose()
+	done = true
 
 func win() -> void:
-	pass
+	$"..".win()
+	done = true

@@ -1,5 +1,7 @@
 extends Node2D
 
+var agent_script = preload("res://scripts/agent.gd")
+
 @onready var map = $TileMapLayer
 var special_tiles = {
 	"goal": {
@@ -17,6 +19,7 @@ var special_tiles = {
 
 func _ready() -> void:
 	make_special_tiles()
+	$CanvasLayer2/FadeToBlack.play("fade_in")
 
 func make_special_tiles() -> void:
 	for cell in map.get_used_cells():
@@ -28,3 +31,22 @@ func make_special_tiles() -> void:
 			if "data" in special:
 				node.data = special["data"]
 			$Special.add_child(node)
+
+func set_as_agent() -> void:
+	$Player.set_script(agent_script)
+
+func win() -> void:
+	$CanvasLayer2/EndScreens/WinScreen.visible = true
+
+func lose() -> void:
+	$CanvasLayer2/EndScreens/LoseScreen.visible = true
+
+func _on_return_pressed() -> void:
+	$CanvasLayer2/FadeToBlack.play("fade_out")
+	await $CanvasLayer2/FadeToBlack.animation_finished
+	var tree = get_tree()
+	tree.change_scene_to_file("res://scenes/title.tscn")
+	tree.root.child_entered_tree.connect(
+		func (scene) -> void: scene.fade(),
+		CONNECT_ONE_SHOT
+	)
