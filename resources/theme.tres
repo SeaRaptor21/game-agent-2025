@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://o652as3bmwqj"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://o652as3bmwqj"]
 
 [ext_resource type="FontFile" uid="uid://d3fv8fs8o0t0l" path="res://assets/tiny-5-font/Tiny5-Regular.ttf" id="1_0r7hr"]
 
@@ -31,6 +31,16 @@ border_width_bottom = 16
 border_color = Color(0.65098, 0.4, 0.282353, 1)
 shadow_color = Color(0, 0, 0, 0.439216)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_algrt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7pb6y"]
+bg_color = Color(0.34902, 0.196078, 0.168627, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.34902, 0.196078, 0.168627, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6abh"]
 bg_color = Color(0.419608, 0.243137, 0.160784, 1)
 border_width_left = 128
@@ -38,6 +48,21 @@ border_width_top = 64
 border_width_right = 128
 border_width_bottom = 64
 border_color = Color(0.420633, 0.244717, 0.161121, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfgq5"]
+bg_color = Color(0.51043, 0.302345, 0.205408, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l82xf"]
+bg_color = Color(0.585017, 0.352671, 0.24332, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfm05"]
+bg_color = Color(0.584314, 0.352941, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xaps8"]
+content_margin_left = 10.0
+bg_color = Color(0.367228, 0.209604, 0.135994, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cby7f"]
 
 [resource]
 default_font = ExtResource("1_0r7hr")
@@ -47,4 +72,12 @@ Button/styles/focus = SubResource("StyleBoxFlat_3p7f3")
 Button/styles/hover = SubResource("StyleBoxFlat_nic68")
 Button/styles/normal = SubResource("StyleBoxFlat_7lt67")
 Button/styles/pressed = SubResource("StyleBoxFlat_3qrdc")
+LineEdit/font_sizes/font_size = 16
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_algrt")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_7pb6y")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_i6abh")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_lfgq5")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_l82xf")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_pfm05")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_xaps8")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_cby7f")

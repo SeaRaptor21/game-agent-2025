@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cy5ljx6uvxmuc"]
+[gd_scene load_steps=14 format=4 uid="uid://cy5ljx6uvxmuc"]
 
 [ext_resource type="Theme" uid="uid://o652as3bmwqj" path="res://resources/theme.tres" id="1_fp2ie"]
 [ext_resource type="Script" path="res://scripts/title.gd" id="2_claiw"]
@@ -15,20 +15,16 @@ outline_color = Color(0.34902, 0.196078, 0.168627, 1)
 atlas = ExtResource("3_hkw5p")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="Animation" id="Animation_8m111"]
-resource_name = "fade_out"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FadeToBlackRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtxds"]
+bg_color = Color(0.41, 0.236297, 0.1558, 0)
+border_color = Color(0.34902, 0.196078, 0.168627, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_wgvyj"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjinb"]
+font_size = 24
 
 [sub_resource type="Animation" id="Animation_3d1n0"]
 length = 0.001
@@ -58,6 +54,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8m111"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeToBlackRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pgytp"]
@@ -172,7 +183,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Help/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 32
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Help/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -222,18 +233,24 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="Docs"]
 layout_mode = 2
 theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 120
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Docs/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 32
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Docs/MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Docs/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtxds")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Docs/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 bbcode_enabled = true
-text = "[font_size=24][font_size=48][center]Help[/center][/font_size]
+text = "[font_size=24][font_size=48][center]Docs[/center][/font_size]
 
 Navigation:
 [ul]
@@ -257,6 +274,17 @@ Expected Results:
   The human player will be able to complete the level but should fee challenged
   The agent should be able to complete the level every time it's run when fully trained
 [/ul]
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum malesuada turpis vel magna imperdiet aliquet id in nunc. Cras suscipit quam vitae lectus semper feugiat. Sed commodo suscipit tincidunt. Cras turpis mauris, suscipit quis blandit eget, efficitur non lacus. Proin in viverra magna, at efficitur libero. Nunc rutrum luctus sapien, eu lacinia mauris vehicula elementum. Aliquam a quam sapien. Donec ornare est ligula, ac egestas quam feugiat nec. Morbi vel aliquam magna. In hac habitasse platea dictumst. Praesent nec augue in dui dictum volutpat. Cras pharetra lobortis euismod. Vestibulum vel tincidunt nunc, quis tempor felis.
+
+Nunc vel leo sit amet urna varius feugiat. Donec rhoncus imperdiet dolor, vel interdum nibh auctor quis. Mauris a ipsum gravida, iaculis lacus a, tempus ipsum. Morbi at purus eu nunc mollis venenatis et et risus. In sit amet efficitur dui. Nulla malesuada dictum leo. Curabitur ante lacus, fermentum ac placerat sit amet, mollis sed justo.
+
+Nam interdum nisi ut turpis ultricies volutpat. Proin quis hendrerit neque. Vivamus condimentum augue at arcu varius sollicitudin. Fusce congue est vel quam ornare molestie. Phasellus sagittis arcu nisl, sed varius sem pretium in. Cras laoreet facilisis lacinia. Aenean neque odio, dignissim eget velit in, tincidunt lobortis dolor. Sed sed hendrerit velit. Nunc in sem risus.
+
+Quisque consectetur ornare malesuada. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed ac dui semper, dictum lacus eu, eleifend ante. Donec at fringilla erat. Nunc in maximus arcu. Etiam pellentesque ac nisl non facilisis. Mauris pretium porta nulla, in posuere nisl feugiat eget. Cras ut venenatis dolor. Aenean maximus eget lectus nec mollis.
+
+Nullam vitae congue augue. Aliquam facilisis lectus vehicula neque pretium fermentum. Mauris accumsan lectus sed tortor luctus bibendum. Mauris congue, sapien id venenatis elementum, massa ipsum dictum urna, vitae mollis libero sapien id orci. Sed congue mauris vel leo luctus, nec volutpat enim lacinia. Praesent finibus nunc et suscipit fringilla. Nullam porta purus enim, a elementum nisi dictum sed. Maecenas eu elit in turpis iaculis pretium. Curabitur scelerisque purus vel placerat consequat. Nulla mattis et mi id egestas. Nullam vitae dapibus mauris. Pellentesque at ante felis. Morbi tempus bibendum tellus in interdum. Curabitur fringilla, justo at mollis egestas, sem nisl mollis nulla, sed tincidunt ex erat non nibh. Nunc pretium elit nec nisl tristique bibendum. 
 [/font_size]"
 fit_content = true
 
@@ -265,9 +293,201 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Return to Title"
 
+[node name="Human" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Human"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Human/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Human/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24][font_size=48][center]Human Player[/center][/font_size]
+
+Goal:
+[ul]
+  Reach the green block at the bottom of the level without hitting any spikes on the way down
+[/ul]
+Controls:
+[ul]
+  Arrow keys or WASD to move
+[/ul]
+Expected Results:
+[ul]
+  The human player will be able to complete the level but should fee challenged
+[/ul]
+[/font_size]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Human/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="PlayHuman" type="Button" parent="Human/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play as Human"
+
+[node name="Return" type="Button" parent="Human/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Title"
+
+[node name="Agent" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Agent"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Agent/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Agent/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24][font_size=48][center]Agent Player[/center][/font_size]
+[font_size=28]NOTE:[/font_size] The agent must be trained first before it will complete full runs. Do this by clicking \"Train the Agent\" below.
+
+Goal:
+[ul]
+  Reach the green block at the bottom of the level without hitting any spikes on the way down
+[/ul]
+Controls:
+[ul]
+  Watch the agent do its thing!
+[/ul]
+Expected Results:
+[ul]
+  The agent should be able to complete the level every time it's run when fully trained
+[/ul]
+[/font_size]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Agent/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="TrainAgent" type="Button" parent="Agent/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Train the Agent"
+
+[node name="PlayAgent" type="Button" parent="Agent/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play the Agent"
+
+[node name="Return" type="Button" parent="Agent/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Title"
+
+[node name="Train" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Train"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Train/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Train/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[font_size=24][font_size=48][center]Train Agent Player[/center][/font_size]
+
+Select a number of episodes to train for and click \"Train the Agent\". To reset the agent, click \"Reset the Agent\".
+[/font_size]"
+fit_content = true
+
+[node name="Label" type="Label" parent="Train/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0 Episodes trained so far"
+label_settings = SubResource("LabelSettings_wgvyj")
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Train/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Train/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Episodes"
+label_settings = SubResource("LabelSettings_kjinb")
+
+[node name="Episodes" type="SpinBox" parent="Train/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+max_value = 10000.0
+value = 1000.0
+allow_greater = true
+custom_arrow_step = 100.0
+select_all_on_focus = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Train/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+
+[node name="TrainAgent" type="Button" parent="Train/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Train the Agent"
+
+[node name="ResetAgent" type="Button" parent="Train/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Reset the Agent"
+
+[node name="Return" type="Button" parent="Train/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Return to Title"
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAABAA0AAAADAAMAAAABAAwAAAACAAIAAAABAAsAAAACAAIAAAABAAoAAAACAAIAAAABAAkAAAACAAIAAAABAAgAAAACAAIAAAABAAcAAAACAAIAAAABAAYAAAACAAIAAAABAAUAAAACAAIAAAABAAQAAAACAAIAAAABAAMAAAACAAIAAAABAAIAAAACAAIAAAABAAEAAAACAAIAAAABAAAAAAADAAEAAAAAAA0AAAABAAMAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAACAAIAAAAAAAUAAAACAAIAAAAAAAQAAAACAAIAAAAAAAMAAAACAAIAAAAAAAIAAAACAAIAAAAAAAEAAAACAAIAAAAAAAAAAAACAAIAAAAXAA0AAAACAAIAAAAXAAwAAAACAAIAAAAXAAsAAAACAAIAAAAXAAoAAAACAAIAAAAXAAkAAAACAAIAAAAXAAgAAAACAAIAAAAXAAcAAAACAAIAAAAXAAYAAAACAAIAAAAXAAUAAAACAAIAAAAXAAQAAAACAAIAAAAXAAMAAAACAAIAAAAXAAIAAAACAAIAAAAXAAEAAAACAAIAAAAXAAAAAAACAAIAAAAWAA0AAAACAAIAAAAWAAwAAAACAAIAAAAWAAsAAAACAAIAAAAWAAoAAAACAAIAAAAWAAkAAAACAAIAAAAWAAgAAAACAAIAAAAWAAcAAAACAAIAAAAWAAYAAAACAAIAAAAWAAUAAAACAAIAAAAWAAQAAAACAAIAAAAWAAMAAAACAAIAAAAWAAIAAAACAAIAAAAWAAEAAAACAAIAAAAWAAAAAAACAAIAAAACAA4AAAADAAIAAAACAA0AAAABAAMAAAACAAwAAAACAAIAAAACAAsAAAADAAAAAAACAAoAAAADAAAAAAACAAkAAAACAAIAAAACAAgAAAACAAIAAAACAAcAAAACAAIAAAACAAYAAAACAAIAAAACAAUAAAADAAAAAAACAAQAAAACAAIAAAACAAMAAAACAAIAAAACAAIAAAADAAAAAAACAAEAAAACAAIAAAACAAAAAAABAAEAAAACAP//AAADAAIAAAABAP//AAACAAIAAAAAAP//AAABAAEAAAABAA4AAAACAAIAAAAAAA4AAAABAAIAAAD//w4AAAABAAMAAAD//w0AAAACAAIAAAD//wwAAAACAAIAAAD//wsAAAACAAIAAAD//woAAAACAAIAAAD//wkAAAACAAIAAAD//wgAAAACAAIAAAD//wcAAAACAAIAAAD//wYAAAACAAIAAAD//wUAAAACAAIAAAD//wQAAAACAAIAAAD//wMAAAACAAIAAAD//wIAAAACAAIAAAD//wEAAAACAAIAAAD//wAAAAACAAIAAAD/////AAABAAEAAAAYAP//AAADAAEAAAAXAP//AAACAAIAAAAWAP//AAACAAIAAAAYAA0AAAADAAMAAAAYAAwAAAACAAIAAAAYAAsAAAACAAIAAAAYAAoAAAACAAIAAAAYAAkAAAACAAIAAAAYAAgAAAACAAIAAAAYAAcAAAACAAIAAAAYAAYAAAACAAIAAAAYAAUAAAACAAIAAAAYAAQAAAACAAIAAAAYAAMAAAACAAIAAAAYAAIAAAACAAIAAAAYAAEAAAACAAIAAAAYAAAAAAACAAIAAAAVAA0AAAACAAIAAAAVAAwAAAACAAIAAAAVAAsAAAABAAMAAAAVAAoAAAACAAIAAAAVAAkAAAABAAAAAAAVAAgAAAABAAAAAAAVAAcAAAACAAIAAAAVAAYAAAACAAIAAAAVAAUAAAACAAIAAAAVAAQAAAACAAIAAAAVAAMAAAABAAAAAAAVAAIAAAABAAEAAAAVAAEAAAACAAIAAAAVAAAAAAACAAIAAAAVAP//AAABAAEAAAAUAAEAAAACAAIAAAAUAAAAAAACAAIAAAAUAP//AAACAAIAAAATAAEAAAABAAMAAAATAAAAAAACAAIAAAATAP//AAACAAIAAAASAAAAAAACAAIAAAASAP//AAACAAIAAAARAAAAAAABAAMAAAARAP//AAABAAEAAAAEAAEAAAADAAMAAAAEAAAAAAACAAIAAAAEAP//AAADAAEAAAADAAEAAAACAAIAAAADAAAAAAACAAIAAAADAP//AAACAAIAAAAGAAAAAAADAAMAAAAGAP//AAADAAEAAAAFAAAAAAACAAIAAAAFAP//AAACAAIAAAAEAA0AAAADAAMAAAAEAAwAAAADAAEAAAADAA0AAAACAAIAAAADAAwAAAACAAIAAAAGAA0AAAADAAEAAAAFAA0AAAABAAMAAAAUAA0AAAACAAIAAAAUAAwAAAACAAIAAAATAA0AAAACAAIAAAATAAwAAAABAAEAAAASAA0AAAACAAIAAAARAA0AAAABAAEAAAAGAA4AAAADAAMAAAAFAA4AAAACAAIAAAAEAA4AAAACAAIAAAADAA4AAAACAAIAAAAYAA4AAAADAAMAAAAXAA4AAAACAAIAAAAWAA4AAAACAAIAAAAVAA4AAAACAAIAAAAUAA4AAAACAAIAAAATAA4AAAACAAIAAAASAA4AAAACAAIAAAARAA4AAAABAAMAAAADAAkAAAAEAAIAAAADAAcAAAAEAAIAAAADAAMAAAAEAAIAAAAGAAwAAAACAAAAAAAEAAsAAAACAAAAAAAGAAEAAAACAAQAAAASAAEAAAACAAQAAAATAAIAAAACAAQAAAAUAAIAAAACAAQAAAAUAAQAAAAAAAIAAAAUAAcAAAAAAAIAAAAUAAoAAAAAAAIAAAATAAsAAAACAAAAAAASAAwAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAA0AAAADAAMAAAABAAwAAAACAAIAAAABAAsAAAACAAIAAAABAAoAAAACAAIAAAABAAkAAAACAAIAAAABAAgAAAACAAIAAAABAAcAAAACAAIAAAABAAYAAAACAAIAAAABAAUAAAACAAIAAAABAAQAAAACAAIAAAABAAMAAAACAAIAAAABAAIAAAACAAIAAAABAAEAAAACAAIAAAABAAAAAAACAAIAAAAAAA0AAAABAAMAAAAAAAwAAAACAAIAAAAAAAsAAAACAAIAAAAAAAoAAAACAAIAAAAAAAkAAAACAAIAAAAAAAgAAAACAAIAAAAAAAcAAAACAAIAAAAAAAYAAAACAAIAAAAAAAUAAAACAAIAAAAAAAQAAAACAAIAAAAAAAMAAAACAAIAAAAAAAIAAAACAAIAAAAAAAEAAAACAAIAAAAAAAAAAAACAAIAAAAXAA0AAAACAAIAAAAXAAwAAAACAAIAAAAXAAsAAAACAAIAAAAXAAoAAAACAAIAAAAXAAkAAAACAAIAAAAXAAgAAAACAAIAAAAXAAcAAAACAAIAAAAXAAYAAAACAAIAAAAXAAUAAAACAAIAAAAXAAQAAAACAAIAAAAXAAMAAAACAAIAAAAXAAIAAAACAAIAAAAXAAEAAAACAAIAAAAXAAAAAAACAAIAAAAWAA0AAAACAAIAAAAWAAwAAAACAAIAAAAWAAsAAAACAAIAAAAWAAoAAAACAAIAAAAWAAkAAAACAAIAAAAWAAgAAAACAAIAAAAWAAcAAAACAAIAAAAWAAYAAAACAAIAAAAWAAUAAAACAAIAAAAWAAQAAAACAAIAAAAWAAMAAAACAAIAAAAWAAIAAAACAAIAAAAWAAEAAAACAAIAAAAWAAAAAAACAAIAAAACAA4AAAADAAIAAAACAA0AAAABAAMAAAACAAwAAAACAAIAAAACAAsAAAADAAAAAAACAAoAAAADAAAAAAACAAkAAAACAAIAAAACAAgAAAACAAIAAAACAAcAAAACAAIAAAACAAYAAAACAAIAAAACAAUAAAADAAAAAAACAAQAAAACAAIAAAACAAMAAAACAAIAAAACAAIAAAADAAAAAAACAAEAAAACAAIAAAACAAAAAAACAAIAAAACAP//AAACAAIAAAABAP//AAACAAIAAAAAAP//AAACAAIAAAABAA4AAAACAAIAAAAAAA4AAAABAAIAAAD//w4AAAABAAMAAAD//w0AAAACAAIAAAD//wwAAAACAAIAAAD//wsAAAACAAIAAAD//woAAAACAAIAAAD//wkAAAACAAIAAAD//wgAAAACAAIAAAD//wcAAAACAAIAAAD//wYAAAACAAIAAAD//wUAAAACAAIAAAD//wQAAAACAAIAAAD//wMAAAACAAIAAAD//wIAAAACAAIAAAD//wEAAAACAAIAAAD//wAAAAACAAIAAAD/////AAABAAEAAAAYAP//AAADAAEAAAAXAP//AAACAAIAAAAWAP//AAACAAIAAAAYAA0AAAADAAMAAAAYAAwAAAACAAIAAAAYAAsAAAACAAIAAAAYAAoAAAACAAIAAAAYAAkAAAACAAIAAAAYAAgAAAACAAIAAAAYAAcAAAACAAIAAAAYAAYAAAACAAIAAAAYAAUAAAACAAIAAAAYAAQAAAACAAIAAAAYAAMAAAACAAIAAAAYAAIAAAACAAIAAAAYAAEAAAACAAIAAAAYAAAAAAACAAIAAAAVAA0AAAACAAIAAAAVAAwAAAACAAIAAAAVAAsAAAABAAMAAAAVAAoAAAACAAIAAAAVAAkAAAABAAAAAAAVAAgAAAABAAAAAAAVAAcAAAACAAIAAAAVAAYAAAACAAIAAAAVAAUAAAACAAIAAAAVAAQAAAACAAIAAAAVAAMAAAABAAAAAAAVAAIAAAABAAEAAAAVAAEAAAACAAIAAAAVAAAAAAACAAIAAAAVAP//AAABAAEAAAAUAAEAAAACAAIAAAAUAAAAAAACAAIAAAAUAP//AAACAAIAAAATAAEAAAABAAMAAAATAAAAAAACAAIAAAATAP//AAACAAIAAAASAAAAAAACAAIAAAASAP//AAACAAIAAAARAAAAAAABAAMAAAARAP//AAABAAEAAAAEAAEAAAADAAMAAAAEAAAAAAACAAIAAAAEAP//AAACAAIAAAADAAEAAAACAAIAAAADAAAAAAACAAIAAAADAP//AAACAAIAAAAGAAAAAAADAAMAAAAGAP//AAADAAEAAAAFAAAAAAACAAIAAAAFAP//AAACAAIAAAAEAA0AAAADAAMAAAAEAAwAAAADAAEAAAADAA0AAAACAAIAAAADAAwAAAACAAIAAAAGAA0AAAADAAEAAAAFAA0AAAABAAMAAAAUAA0AAAACAAIAAAAUAAwAAAACAAIAAAATAA0AAAACAAIAAAATAAwAAAABAAEAAAASAA0AAAACAAIAAAARAA0AAAABAAEAAAAGAA4AAAADAAMAAAAFAA4AAAACAAIAAAAEAA4AAAACAAIAAAADAA4AAAACAAIAAAAYAA4AAAADAAMAAAAXAA4AAAACAAIAAAAWAA4AAAACAAIAAAAVAA4AAAACAAIAAAAUAA4AAAACAAIAAAATAA4AAAACAAIAAAASAA4AAAACAAIAAAARAA4AAAABAAMAAAADAAkAAAAEAAIAAAADAAcAAAAEAAIAAAADAAMAAAAEAAIAAAAGAAwAAAACAAAAAAAEAAsAAAACAAAAAAAGAAEAAAACAAQAAAASAAEAAAACAAQAAAATAAIAAAACAAQAAAAUAAIAAAACAAQAAAAUAAQAAAAAAAIAAAAUAAcAAAAAAAIAAAAUAAoAAAAAAAIAAAATAAsAAAACAAAAAAASAAwAAAACAAAAAAA=")
 tile_set = ExtResource("4_oq8kl")
 
 [node name="FadeToBlackRect" type="ColorRect" parent="."]
@@ -293,3 +513,11 @@ speed_scale = 2.0
 [connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Help/MarginContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Docs/MarginContainer/VBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Human/MarginContainer/VBoxContainer/HBoxContainer/PlayHuman" to="." method="_on_play_human_pressed"]
+[connection signal="pressed" from="Human/MarginContainer/VBoxContainer/HBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Agent/MarginContainer/VBoxContainer/HBoxContainer/TrainAgent" to="." method="_on_train_agent_screen_pressed"]
+[connection signal="pressed" from="Agent/MarginContainer/VBoxContainer/HBoxContainer/PlayAgent" to="." method="_on_play_agent_pressed"]
+[connection signal="pressed" from="Agent/MarginContainer/VBoxContainer/HBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Train/MarginContainer/VBoxContainer/HBoxContainer/TrainAgent" to="." method="_on_train_agent_pressed"]
+[connection signal="pressed" from="Train/MarginContainer/VBoxContainer/HBoxContainer/ResetAgent" to="." method="_on_reset_agent_pressed"]
+[connection signal="pressed" from="Train/MarginContainer/VBoxContainer/HBoxContainer/Return" to="." method="_on_return_pressed"]
