@@ -77,6 +77,22 @@ func _on_return_pressed() -> void:
 	$Train.visible = false
 	$FadeToBlack.play("fade_in") # Fade in
 
+func _on_sans_serif_toggled(toggled_on: bool) -> void:
+	# Allow the user to toggle a sans serif font for the docs, rather than
+	# the standard pixel font. This can make the docs easier to read, and since
+	# the docs are somewhat lengthy, that's definitely useful.
+	var label = $Docs/MarginContainer/VBoxContainer/ScrollContainer/RichTextLabel
+	if toggled_on:
+		# Give it a sans serif font and reset the font size
+		# Empty system font = font default = sans serif
+		label.add_theme_font_override("normal_font", SystemFont.new())
+		label.remove_theme_font_size_override("normal_font_size")
+	else:
+		# Remove the font override and give it a larger font
+		# The font used for this project is smaller in general than a normal font
+		label.remove_theme_font_override("normal_font")
+		label.add_theme_font_size_override("normal_font_size", 24)
+
 func _on_quit_pressed() -> void:
 	get_tree().quit() # Quit the game
 

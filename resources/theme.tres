@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://o652as3bmwqj"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://o652as3bmwqj"]
 
 [ext_resource type="FontFile" uid="uid://d3fv8fs8o0t0l" path="res://assets/tiny-5-font/Tiny5-Regular.ttf" id="1_0r7hr"]
 
@@ -12,6 +12,15 @@ border_width_top = 16
 border_width_right = 16
 border_width_bottom = 16
 border_color = Color(0.560784, 0.337255, 0.231373, 1)
+shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moni6"]
+bg_color = Color(0.65098, 0.4, 0.282353, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.65098, 0.4, 0.282353, 1)
 shadow_color = Color(0, 0, 0, 0.439216)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lt67"]
@@ -30,6 +39,23 @@ border_width_right = 16
 border_width_bottom = 16
 border_color = Color(0.65098, 0.4, 0.282353, 1)
 shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4ueb"]
+bg_color = Color(0.560784, 0.337255, 0.231373, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.560784, 0.337255, 0.231373, 1)
+shadow_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l6hx"]
+bg_color = Color(0.34902, 0.196078, 0.168627, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.34902, 0.196078, 0.168627, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_algrt"]
 
@@ -70,8 +96,11 @@ Button/font_sizes/font_size = 32
 Button/styles/disabled = null
 Button/styles/focus = SubResource("StyleBoxFlat_3p7f3")
 Button/styles/hover = SubResource("StyleBoxFlat_nic68")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_moni6")
 Button/styles/normal = SubResource("StyleBoxFlat_7lt67")
 Button/styles/pressed = SubResource("StyleBoxFlat_3qrdc")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxFlat_x4ueb")
+CheckBox/styles/pressed = SubResource("StyleBoxFlat_4l6hx")
 LineEdit/font_sizes/font_size = 16
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_algrt")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_7pb6y")
