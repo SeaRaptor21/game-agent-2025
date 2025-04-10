@@ -19,7 +19,7 @@ var end_states: Array # The states that could end a run, e.g. spikes or the goal
 var q_table: Array # The actual Q-Table
 var alpha = 0.1 # Learning rate (how much the new information impacts the Q-Table)
 var gamma = 0.9 # Discout factor (money now is better than money later)
-var epsilon = 0.8 # Exploration factor (exploration vs. exploitation)
+var epsilon = Game.EPSILON # Exploration factor (exploration vs. exploitation)
 var decay = 0.99 # Decay rate of the exploration factor
 
 func _init(_states: int, _actions: int, _rewards: Array, _state_transitions: Dictionary, _initial_state: int, _end_states: Array):
@@ -40,7 +40,8 @@ func _init(_states: int, _actions: int, _rewards: Array, _state_transitions: Dic
 
 func reset() -> void:
 	# To reset, we simply revert the only values that have gotten
-	# changed by training: the Q-Table. Set it all back to zeroes.
+	# changed by training: the Q-Table and epsilon.
+	epsilon = Game.EPSILON
 	q_table = []
 	for s in states:
 		var r = []
@@ -73,6 +74,11 @@ func learn(episodes: int) -> void:
 
 func best_action(state: int) -> int:
 	# Get the next state from the Q-Table and find it's corresponding action
+	if q_table[state][0] == q_table[state][1] and q_table[state][0] == q_table[state][2]:
+		# If we have all the same, we pick randomly. Otherwise, we would always
+		# choose to go left if the training either didn't reach this part yet or
+		# didn't modify the Q-Table here
+		return randi_range(0, actions-1)
 	return q_table[state].find(q_table[state].max())
 
 func next_state(state: int) -> int:

@@ -37,6 +37,23 @@ board = [x.strip() for x in """
     ##     ##
     ##     ##
     ##^  ^^##
+    #### ####
+    ##     ##
+    #  ###  #
+    #  ##<<<#
+    #^ ##>>^#
+    #  ##^<<#
+    # ^##>>^#
+    #  ##^<<#
+    #^ ##  ^#
+    #  ##^  #
+    # ^##   #
+    #       #
+    #^     ^#
+    #### ####
+    ##     ##
+    ##     ##
+    ##     ##
     ####G####
     #########
 """.strip().splitlines()] # Start with string representation, split into rows
@@ -52,14 +69,12 @@ for s in range(states):
     col = s % width
     row = s // width
     state_transitions[s] = [
-        s+width-1 if col>0 else s+width if row+1<height else s, # Left and down if possible, then down, then nothing
-        s+width if row+1<height else s, # Down if possible, then nothing
-        s+width+1 if col+1<width else s+width if row+1<height else s # Down and right if possible, then down, then nothing
+        s+width-1 if col>0 and joined[s+width-1]!='#' else s+width if row+1<height and joined[s+width]!='#' else \
+            s-1 if col>0 and joined[s-1]!='#' else s, # Left and down if possible, then down, then left, then nothing
+        s+width if row+1<height and joined[s+width]!='#' else s, # Down if possible, then nothing
+        s+width+1 if col+1<width and joined[s+width+1]!='#' else s+width if row+1<height and joined[s+width]!='#' else \
+            s+1 if col+1<width and joined[s+1]!='#' else s # Down and right if possible, then down, then right, then nothing
     ]
-    # Alternates for if the action would move us into a wall
-    alt = s+width if joined[s+width] != '#' else s+width-1 if joined[s+width-1] != '#' else s+width+1 if joined[s+width+1] != '#' else s-1 if joined[s-1] != '#' else s+1 if joined[s+1] != '#' else s
-    # Use the alternate if we would otherwise be in a wall
-    state_transitions[s] = [x if joined[x] != '#' else alt for x in state_transitions[s]]
     if joined[s] == '<':
         # Just always go left if there's wind blowing left
         state_transitions[s] = [s+width-(1 if joined[s+width-1] != '#' else 0)]*3
