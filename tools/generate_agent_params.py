@@ -33,10 +33,10 @@ board = [x.strip() for x in """
     ## ##  ##
     ##     ##
     ##    ^##
-    ##   ^###
-    ##   ####
+    ##    ###
     ##     ##
-    ##^   ^##
+    ##     ##
+    ##^  ^^##
     ####G####
     #########
 """.strip().splitlines()] # Start with string representation, split into rows
