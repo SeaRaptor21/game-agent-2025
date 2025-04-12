@@ -210,7 +210,7 @@ Controls (Agent):
 [/ul]
 Expected Results:
 [ul]
-  The human player will be able to complete the level but should fee challenged
+  The human player will be able to complete the level but should feel challenged
   The agent should be able to complete the level every time it's run when fully trained
 [/ul]
 [/font_size]"
@@ -321,7 +321,7 @@ Controls:
 [/ul]
 Expected Results:
 [ul]
-  The human player will be able to complete the level but should fee challenged
+  The human player will be able to complete the level but should feel challenged
 [/ul]
 [/font_size]"
 fit_content = true
