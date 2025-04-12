@@ -16,3 +16,6 @@ mono_crash.*.json
 
 # Ignore distributions for now
 dist/
+
+# MacOS bs
+.DS_Store
